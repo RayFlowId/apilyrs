@@ -1,3 +1,4 @@
+(()=>{
 const API_BASE = "https://api.jaky.dev";
 const endpointData = [
  {category:"Lyrics",path:"/v1/lyrics/search",desc:"Cari lirik berdasarkan kata kunci atau judul lagu."},
@@ -187,3 +188,5 @@ $("sendRequest").addEventListener("click",async()=>{
 renderFilters();renderEndpoints();chooseEndpoint(endpointData[0]);
 // Keep the library easy to reach from the top navigation, including mobile.
 document.querySelectorAll('a[href="#library"]').forEach(link=>link.addEventListener("click",()=>{const panel=$("library");if(panel){panel.scrollIntoView({behavior:"smooth",block:"start"});}}));
+
+})();
