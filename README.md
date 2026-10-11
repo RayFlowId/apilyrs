@@ -14,11 +14,11 @@ Import the new repository. No build command is needed; this is a static site.
 ## Features
 - Searchable Jaky API route catalog (routes included are the documented/known routes currently curated in `labs.js`).
 - Category filters, query parameters, optional JSON body, custom `/v1/` path, request headers, response display and copy controls.
-- API key stored in this browser's `localStorage`, not in the repository.
+- API key is prefilled by default in `labs.js` and used with the `x-jaky-key` header. The key is embedded in client-side code and is visible to anyone who can access the deployed JavaScript.
 - Official API documentation: https://api.jaky.dev/playground
 
 ## Important notes
 - The Jaky API homepage advertises 140+ registered endpoints. This package includes the routes currently catalogued in `labs.js`; do not assume this list is a verified exhaustive mirror of every endpoint. Check the official Playground for the complete current inventory, exact parameters, methods and response types. Add any missing documented route to `endpointData` in `labs.js`.
-- GitHub Pages is static hosting. A key entered into the browser can be inspected by someone with access to that browser or its developer tools. Never commit API keys or use a public frontend as a secret vault.
+- SECURITY WARNING: this version intentionally embeds the supplied API key in `labs.js` at the owner's request. It is not secret, even if the source repository is private, because the published JavaScript is delivered to visitors. Rotate the key if it should no longer be considered exposed. For real secrecy, move requests to a backend and store the key in a server environment variable.
 - Requests run from the browser and may be blocked by API CORS policies or authentication requirements.
 - Some endpoints may return images, files, or asynchronous task IDs rather than ordinary JSON.

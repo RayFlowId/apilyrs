@@ -101,7 +101,9 @@ const endpointData = [
 const $ = id => document.getElementById(id);
 let selected = endpointData[0], activeCategory = "All", lastResponse = "";
 const KEY_STORE = "lyrs_jaky_api_key_v1";
-const savedKey = localStorage.getItem(KEY_STORE) || "";
+// Default key requested by the site owner. This is exposed in client-side source.
+const DEFAULT_API_KEY = "jK591D6C4B";
+const savedKey = localStorage.getItem(KEY_STORE) || DEFAULT_API_KEY;
 $("endpointCount").textContent = `${endpointData.length} ROUTES`;
 function categories(){return ["All",...new Set(endpointData.map(x=>x.category))]}
 function renderFilters(){
@@ -113,6 +115,7 @@ function renderFilters(){
 function renderEndpoints(){
  const term=$("endpointSearch").value.trim().toLowerCase();
  const list=endpointData.filter(e=>(activeCategory==="All"||e.category===activeCategory)&&(`${e.path} ${e.category} ${e.desc}`).toLowerCase().includes(term));
+ $("endpointCount").textContent = `${endpointData.length} ROUTES`;
  $("endpointList").replaceChildren(...list.map(e=>{
   const b=document.createElement("button");b.type="button";b.className="endpoint-item"+(selected.path===e.path?" active":"");
   const cat=document.createElement("span");cat.className="endpoint-category";cat.textContent=e.category.toUpperCase()+(e.legacy?" · LEGACY":"");
@@ -120,7 +123,7 @@ function renderEndpoints(){
   const sm=document.createElement("small");sm.textContent=e.desc;
   b.append(cat,code,sm);b.addEventListener("click",()=>chooseEndpoint(e));return b;
  }));
- if(!list.length){const p=document.createElement("p");p.className="field-help";p.textContent="Tidak ada endpoint yang cocok."; $("endpointList").append(p)}
+ if(!list.length){const p=document.createElement("p");p.className="field-help";p.textContent="Tidak ada endpoint yang cocok. Hapus kata pencarian atau pilih kategori All."; $("endpointList").append(p)}
 }
 function chooseEndpoint(e){
  selected=e;$("selectedTitle").textContent=e.path.split("/").filter(Boolean).slice(-1)[0].replace(/-/g," ");
@@ -182,3 +185,5 @@ $("sendRequest").addEventListener("click",async()=>{
  }finally{$("sendRequest").disabled=false;$("sendRequest").style.opacity="1"}
 });
 renderFilters();renderEndpoints();chooseEndpoint(endpointData[0]);
+// Keep the library easy to reach from the top navigation, including mobile.
+document.querySelectorAll('a[href="#library"]').forEach(link=>link.addEventListener("click",()=>{const panel=$("library");if(panel){panel.scrollIntoView({behavior:"smooth",block:"start"});}}));

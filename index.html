@@ -9,16 +9,16 @@
 <link rel="stylesheet" href="style.css"><link rel="stylesheet" href="labs.css">
 </head>
 <body>
-<header class="topbar"><a class="brand" href="index.html"><span class="brand-mark">L</span><span>LYRS <em>LABS</em></span></a><button id="menuBtn" class="menu-btn" aria-label="Buka menu">☰</button><nav id="nav"><a class="active" href="index.html">API Explorer</a><a href="#workspace">Workspace</a><a href="https://api.jaky.dev/playground" target="_blank" rel="noopener">Documentation</a></nav><a class="nav-cta" href="https://api.jaky.dev/playground" target="_blank" rel="noopener">API Docs <span>↗</span></a></header>
+<header class="topbar"><a class="brand" href="index.html"><span class="brand-mark">L</span><span>LYRS <em>LABS</em></span></a><button id="menuBtn" class="menu-btn" aria-label="Buka menu">☰</button><nav id="nav"><a class="active" href="index.html">API Explorer</a><a href="#library">API Library</a><a href="#workspace">Workspace</a><a href="https://api.jaky.dev/playground" target="_blank" rel="noopener">Documentation</a></nav><a class="nav-cta" href="https://api.jaky.dev/playground" target="_blank" rel="noopener">API Docs <span>↗</span></a></header>
 <main class="labs-main wrap">
 <section class="labs-hero"><div class="eyebrow"><i></i> LYRS LABS / API WORKSPACE</div><h1>Explore the<br><span>API universe.</span></h1><p>Satu workspace untuk menjelajahi endpoint Jaky API. Cari fitur, atur parameter, kirim request, dan periksa respons dalam satu tempat.</p><div class="labs-meta"><span><i class="green"></i> JAKY API</span><span>BASE URL · api.jaky.dev</span><a href="https://api.jaky.dev/playground" target="_blank" rel="noopener">Buka dokumentasi ↗</a></div></section>
 <section class="key-card card"><div><small>AUTHENTICATION</small><h2>Jaky API key<span>.</span></h2><p>Key disimpan hanya di localStorage browser ini. Untuk Jaky, format header yang didokumentasikan adalah <code>x-jaky-key</code> atau <code>Authorization: Bearer</code>.</p></div><div class="key-controls"><input id="apiKey" type="password" autocomplete="off" placeholder="Tempel API key Jaky di sini"><select id="authMode" aria-label="Metode autentikasi"><option value="x-jaky-key">Header: x-jaky-key</option><option value="bearer">Authorization: Bearer</option><option value="query">Query: apikey</option></select><button id="saveApiKey" type="button" class="button light">Save key</button><button id="clearKey" type="button" class="secondary-btn">Clear</button></div></section>
 <section class="workspace" id="workspace">
-<aside class="endpoint-panel card">
-<div class="panel-head"><div><small>01 — ENDPOINTS</small><h2>API library<span>.</span></h2></div><span id="endpointCount" class="count">21 ROUTES</span></div>
-<label class="searchbox"><span>⌕</span><input id="endpointSearch" type="search" placeholder="Cari endpoint..." autocomplete="off"></label>
+<aside class="endpoint-panel card" id="library">
+<div class="panel-head"><div><small>01 — ENDPOINTS</small><h2>API library<span>.</span></h2></div><span id="endpointCount" class="count">LOADING…</span></div>
+<p class="library-intro">Pilih kategori atau cari nama/path endpoint. Ketuk salah satu route untuk melihat detail dan menyiapkan request.</p><label class="searchbox"><span>⌕</span><input id="endpointSearch" type="search" placeholder="Cari endpoint, mis. /v1/lyrics/search" autocomplete="off"></label>
 <div id="categoryFilters" class="category-filters"></div>
-<div id="endpointList" class="endpoint-list"></div>
+<div id="endpointList" class="endpoint-list"><p class="field-help">Memuat API library… Jika daftar tidak muncul, pastikan file <code>labs.js</code> ikut di-upload.</p></div>
 <div class="legacy-note">Jadwal salat memakai route baru <code>/v1/islami/sholat</code>. Route lama ditandai legacy.</div>
 </aside>
 <section class="request-panel card">
